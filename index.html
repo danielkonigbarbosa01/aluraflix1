@@ -1,13 +1,430 @@
 <!DOCTYPE html>
-
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>Brasil Food 2026</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:#fff8f2;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+background:linear-gradient(135deg,#ff6a00,#ff8c00);
+color:white;
+padding:20px;
+text-align:center;
+position:relative;
+}
+
+header h1{
+font-size:2.2rem;
+}
+
+.ball{
+position:absolute;
+font-size:40px;
+animation:girar 6s linear infinite;
+}
+
+.ball1{
+left:20px;
+top:10px;
+}
+
+.ball2{
+right:20px;
+top:10px;
+}
+
+@keyframes girar{
+100%{
+transform:rotate(360deg);
+}
+}
+
+/* HERO */
+
+.hero{
+height:70vh;
+background:
+linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
+url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1500&q=80');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+color:white;
+text-align:center;
+}
+
+.hero h2{
+font-size:3rem;
+margin-bottom:15px;
+}
+
+.btn{
+padding:15px 35px;
+border:none;
+background:#ff7a00;
+color:white;
+font-size:18px;
+border-radius:30px;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
+background:#ff5000;
+}
+
+/* TELAS */
+
+.screen{
+display:none;
+padding:30px;
+}
+
+.active{
+display:block;
+}
+
+/* CARDAPIO */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:20px;
+}
+
+.card{
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.card-body{
+padding:15px;
+}
+
+.card-body h3{
+margin-bottom:10px;
+}
+
+.price{
+font-size:20px;
+color:#ff6a00;
+font-weight:bold;
+}
+
+/* PRODUTO */
+
+.option-box{
+background:white;
+padding:20px;
+border-radius:15px;
+margin-top:15px;
+box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+label{
+display:block;
+margin:10px 0;
+}
+
+/* PAGAMENTO */
+
+.payment{
+background:white;
+padding:20px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+footer{
+margin-top:50px;
+background:#ff6a00;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.total{
+font-size:28px;
+font-weight:bold;
+color:#ff6a00;
+margin:20px 0;
+}
+
+</style>
 </head>
+
 <body>
-<h1>Meu blog tech</h1>
-<p>Vou compartilhar conhecimentos sobre tecnologia e programação</p>
+
+<header>
+<div class="ball ball1">⚽</div>
+<div class="ball ball2">⚽</div>
+
+<h1>🇧🇷 Brasil Food 2026</h1>
+<p>Delivery Oficial da Torcida</p>
+</header>
+
+<!-- HOME -->
+
+<section id="home" class="hero active">
+<h2>Peça sua comida e torça pelo Brasil!</h2>
+<p>Promoções especiais Copa 2026</p>
+<br>
+<button class="btn" onclick="abrirCardapio()">Ver Cardápio</button>
+</section>
+
+<!-- CARDAPIO -->
+
+<section id="cardapio" class="screen">
+
+<h2>🍔 Cardápio</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd">
+<div class="card-body">
+<h3>Hambúrguer Copa</h3>
+<p class="price">R$ 25,00</p>
+<br>
+<button class="btn" onclick="selecionarProduto('Hambúrguer Copa',25)">
+Escolher
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+<div class="card-body">
+<h3>Marmita Brasileira</h3>
+<p class="price">R$ 35,00</p>
+<br>
+<button class="btn" onclick="selecionarProduto('Marmita Brasileira',35)">
+Escolher
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
+<div class="card-body">
+<h3>Pizza Torcida</h3>
+<p class="price">R$ 50,00</p>
+<br>
+<button class="btn" onclick="selecionarProduto('Pizza Torcida',50)">
+Escolher
+</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- PRODUTO -->
+
+<section id="produto" class="screen">
+
+<h2 id="nomeProduto"></h2>
+
+<div class="option-box">
+
+<h3>Escolha o sabor *</h3>
+
+<label>
+<input type="radio" name="sabor" value="Frango">
+Frango
+</label>
+
+<label>
+<input type="radio" name="sabor" value="Carne">
+Carne
+</label>
+
+<label>
+<input type="radio" name="sabor" value="Calabresa">
+Calabresa
+</label>
+
+</div>
+
+<div class="option-box">
+
+<h3>Quantidade</h3>
+
+<input
+type="number"
+id="quantidade"
+value="1"
+min="1"
+style="padding:10px;width:100px;"
+>
+
+</div>
+
+<br>
+
+<button class="btn" onclick="irPagamento()">
+Continuar
+</button>
+
+</section>
+
+<!-- PAGAMENTO -->
+
+<section id="pagamento" class="screen">
+
+<div class="payment">
+
+<h2>💳 Pagamento</h2>
+
+<div id="resumo"></div>
+
+<div class="total" id="valorTotal"></div>
+
+<label>
+<input type="radio" name="pag" checked>
+Pix
+</label>
+
+<label>
+<input type="radio" name="pag">
+Cartão
+</label>
+
+<label>
+<input type="radio" name="pag">
+Dinheiro
+</label>
+
+<br><br>
+
+<button class="btn" onclick="finalizarPedido()">
+Finalizar Compra
+</button>
+
+</div>
+
+</section>
+
+<footer>
+⚽ Copa 2026 • Brasil Food
+</footer>
+
+<script>
+
+let produtoAtual = "";
+let precoAtual = 0;
+
+function abrirCardapio(){
+
+esconderTudo();
+
+document.getElementById("cardapio")
+.classList.add("active");
+}
+
+function selecionarProduto(nome,preco){
+
+produtoAtual = nome;
+precoAtual = preco;
+
+esconderTudo();
+
+document.getElementById("produto")
+.classList.add("active");
+
+document.getElementById("nomeProduto")
+.innerHTML = nome;
+}
+
+function irPagamento(){
+
+let sabor =
+document.querySelector('input[name="sabor"]:checked');
+
+if(!sabor){
+
+alert("Escolha um sabor.");
+return;
+
+}
+
+let qtd =
+parseInt(document.getElementById("quantidade").value);
+
+let total = qtd * precoAtual;
+
+esconderTudo();
+
+document.getElementById("pagamento")
+.classList.add("active");
+
+document.getElementById("resumo").innerHTML = `
+<h3>${produtoAtual}</h3>
+<p>Sabor: ${sabor.value}</p>
+<p>Quantidade: ${qtd}</p>
+`;
+
+document.getElementById("valorTotal").innerHTML =
+"Total: R$ " + total.toFixed(2);
+
+}
+
+function finalizarPedido(){
+
+alert(
+"Pedido realizado com sucesso! 🇧🇷⚽"
+);
+
+location.reload();
+
+}
+
+function esconderTudo(){
+
+document.querySelectorAll(".screen,.hero")
+.forEach(el=>{
+
+el.classList.remove("active");
+
+});
+
+}
+
+</script>
+
 </body>
 </html>
