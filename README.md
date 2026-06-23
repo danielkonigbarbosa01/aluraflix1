@@ -1,1 +1,1 @@
-# auralab
+# copa 2026
