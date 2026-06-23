@@ -1,156 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Copa do Mundo 2026</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:
+    radial-gradient(circle at top,#0047AB,#001845);
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    text-align:center;
+    padding:40px 20px;
+}
+
+.logo{
+    font-size:90px;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.1);
+    }
+}
+
+h1{
+    font-size:3rem;
+    color:#FFD700;
+}
+
+.subtitle{
+    opacity:.8;
+    margin-top:10px;
+}
+
+.container{
+    width:95%;
+    max-width:1400px;
+    margin:auto;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+    gap:25px;
+    padding-bottom:50px;
+}
+
+.card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:25px;
+    padding:25px;
+    transition:.3s;
+    position:relative;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 30px rgba(255,215,0,.3);
+}
+
+.status{
+    position:absolute;
+    right:15px;
+    top:15px;
+    padding:6px 15px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.future{
+    background:#2196f3;
+}
+
+.live{
+    background:red;
+    animation:blink 1s infinite;
+}
+
+.finished{
+    background:#00c853;
+}
+
+@keyframes blink{
+    50%{
+        opacity:.4;
+    }
+}
+
+.teams{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:25px;
+}
+
+.team{
+    width:40%;
+    text-align:center;
+}
+
+.flag{
+    font-size:55px;
+}
+
+.team-name{
+    margin-top:8px;
+    font-weight:600;
+}
+
+.score{
+    font-size:42px;
+    font-weight:800;
+    color:#FFD700;
+}
+
+.date{
+    text-align:center;
+    margin-top:20px;
+    font-size:15px;
+}
+
+.countdown{
+    text-align:center;
+    margin-top:12px;
+    color:#FFD700;
+    font-weight:600;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    opacity:.7;
+}
+
+.live-indicator{
+    text-align:center;
+    margin-top:10px;
+    color:red;
+    font-weight:bold;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+<div class="logo">🏆</div>
+
+<h1>COPA DO MUNDO 2026</h1>
+
+<p class="subtitle">
+Estados Unidos 🇺🇸 • Canadá 🇨🇦 • México 🇲🇽
+</p>
+
+</header>
+
+<div class="container">
+
+<div id="matches" class="grid"></div>
+
+</div>
+
+<footer>
+Atualização automática dos jogos ⚽
+</footer>
+
+<script>
+
 let jogos = [
 
 {
 home:"México",
-away:"África do Sul",
+away:"Convidado A",
 homeFlag:"🇲🇽",
-awayFlag:"🇿🇦",
+awayFlag:"🌎",
 date:"2026-06-11T20:00:00",
 status:"future"
 },
 
 {
 home:"Canadá",
-away:"Bósnia",
+away:"Convidado B",
 homeFlag:"🇨🇦",
-awayFlag:"🇧🇦",
+awayFlag:"🌎",
 date:"2026-06-12T16:00:00",
 status:"future"
 },
 
 {
 home:"Estados Unidos",
-away:"Paraguai",
+away:"Convidado C",
 homeFlag:"🇺🇸",
-awayFlag:"🇵🇾",
+awayFlag:"🌎",
 date:"2026-06-12T21:00:00",
 status:"future"
 },
 
 {
 home:"Brasil",
-away:"Marrocos",
+away:"Argentina",
 homeFlag:"🇧🇷",
-awayFlag:"🇲🇦",
-date:"2026-06-13T21:00:00",
-status:"future"
-},
-
-{
-home:"Haiti",
-away:"Escócia",
-homeFlag:"🇭🇹",
-awayFlag:"🏴",
-date:"2026-06-13T15:00:00",
-status:"future"
-},
-
-{
-home:"Alemanha",
-away:"Curaçao",
-homeFlag:"🇩🇪",
-awayFlag:"🇨🇼",
-date:"2026-06-14T19:00:00",
-status:"future"
-},
-
-{
-home:"Costa do Marfim",
-away:"Equador",
-homeFlag:"🇨🇮",
-awayFlag:"🇪🇨",
-date:"2026-06-14T16:00:00",
-status:"future"
-},
-
-{
-home:"Holanda",
-away:"Japão",
-homeFlag:"🇳🇱",
-awayFlag:"🇯🇵",
-date:"2026-06-14T22:00:00",
-status:"future"
-},
-
-{
-home:"Suécia",
-away:"Tunísia",
-homeFlag:"🇸🇪",
-awayFlag:"🇹🇳",
-date:"2026-06-14T13:00:00",
-status:"future"
-},
-
-{
-home:"Argentina",
-away:"Argélia",
-homeFlag:"🇦🇷",
-awayFlag:"🇩🇿",
-date:"2026-06-16T21:00:00",
+awayFlag:"🇦🇷",
+date:"2026-06-15T21:00:00",
 status:"future"
 },
 
 {
 home:"França",
-away:"Senegal",
+away:"Alemanha",
 homeFlag:"🇫🇷",
-awayFlag:"🇸🇳",
-date:"2026-06-16T18:00:00",
-status:"future"
-},
-
-{
-home:"Inglaterra",
-away:"Croácia",
-homeFlag:"🏴",
-awayFlag:"🇭🇷",
-date:"2026-06-17T16:00:00",
+awayFlag:"🇩🇪",
+date:"2026-06-18T18:00:00",
 status:"future"
 },
 
 {
 home:"Portugal",
-away:"Congo",
+away:"Espanha",
 homeFlag:"🇵🇹",
-awayFlag:"🇨🇩",
-date:"2026-06-17T20:00:00",
+awayFlag:"🇪🇸",
+date:"2026-06-20T18:00:00",
+status:"future"
+},
+
+{
+home:"Inglaterra",
+away:"Holanda",
+homeFlag:"🏴",
+awayFlag:"🇳🇱",
+date:"2026-06-22T17:00:00",
 status:"future"
 },
 
 {
 home:"Brasil",
-away:"Haiti",
+away:"Uruguai",
 homeFlag:"🇧🇷",
-awayFlag:"🇭🇹",
-date:"2026-06-21T18:00:00",
+awayFlag:"🇺🇾",
+date:"2026-06-24T20:00:00",
 status:"future"
 },
 
 {
 home:"Argentina",
-away:"Áustria",
+away:"França",
 homeFlag:"🇦🇷",
-awayFlag:"🇦🇹",
-date:"2026-06-22T13:00:00",
+awayFlag:"🇫🇷",
+date:"2026-06-26T20:00:00",
 status:"future"
 },
 
 {
 home:"Brasil",
-away:"Escócia",
+away:"Alemanha",
 homeFlag:"🇧🇷",
-awayFlag:"🏴",
-date:"2026-06-26T21:00:00",
-status:"future"
-},
-
-{
-home:"Argentina",
-away:"Jordânia",
-homeFlag:"🇦🇷",
-awayFlag:"🇯🇴",
-date:"2026-06-27T22:00:00",
+awayFlag:"🇩🇪",
+date:"2026-07-05T21:00:00",
 status:"future"
 }
 
 ];
+
+function renderizar(){
+
+const container = document.getElementById("matches");
+
+container.innerHTML = "";
+
+jogos.forEach((jogo,index)=>{
+
+let statusClass="";
+let statusText="";
+
+if(jogo.status==="future"){
+statusClass="future";
+statusText="EM BREVE";
+}
+
+if(jogo.status==="live"){
+statusClass="live";
+statusText="AO VIVO";
+}
+
+if(jogo.status==="finished"){
+statusClass="finished";
+statusText="ENCERRADO";
+}
+
+let score="VS";
+
+if(jogo.status==="live" || jogo.status==="finished"){
+score=`${jogo.scoreHome} x ${jogo.scoreAway}`;
+}
+
+container.innerHTML += `
+
+<div class="card">
+
+<div class="status ${statusClass}">
+${statusText}
+</div>
+
+<div class="teams">
+
+<div class="team">
+<div class="flag">${jogo.homeFlag}</div>
+<div class="team-name">${jogo.home}</div>
+</div>
+
+<div class="score">${score}</div>
+
+<div class="team">
+<div class="flag">${jogo.awayFlag}</div>
+<div class="team-name">${jogo.away}</div>
+</div>
+
+</div>
+
+<div class="date">
+${new Date(jogo.date).toLocaleString('pt-BR')}
+</div>
+
+<div class="countdown" id="contador-${index}">
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+function atualizarContagem(){
+
+jogos.forEach((jogo,index)=>{
+
+const el = document.getElementById(`contador-${index}`);
+
+if(!el) return;
+
+if(jogo.status !== "future"){
+el.innerHTML="";
+return;
+}
+
+const agora = new Date();
+const dataJogo = new Date(jogo.date);
+
+const diferenca = dataJogo - agora;
+
+if(diferenca <= 0){
+
+jogo.status="finished";
+
+jogo.scoreHome=Math.floor(Math.random()*5);
+jogo.scoreAway=Math.floor(Math.random()*5);
+
+renderizar();
+
+return;
+
+}
+
+const dias=Math.floor(diferenca/(1000*60*60*24));
+const horas=Math.floor(diferenca/(1000*60*60)%24);
+const minutos=Math.floor(diferenca/(1000*60)%60);
+const segundos=Math.floor(diferenca/1000%60);
+
+el.innerHTML=
+`⏳ ${dias}d ${horas}h ${minutos}m ${segundos}s`;
+
+});
+
+}
+
+renderizar();
+
+setInterval(atualizarContagem,1000);
+
+</script>
+
+</body>
+</html>
