@@ -3,426 +3,329 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brasil Food 2026</title>
+<title>Copa do Mundo 2026 - Jogos Ao Vivo</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
-background:#fff8f2;
-overflow-x:hidden;
+    background:linear-gradient(135deg,#001d3d,#003566,#001d3d);
+    min-height:100vh;
+    color:white;
 }
-
-/* HEADER */
 
 header{
-background:linear-gradient(135deg,#ff6a00,#ff8c00);
-color:white;
-padding:20px;
-text-align:center;
-position:relative;
+    text-align:center;
+    padding:40px 20px;
 }
 
-header h1{
-font-size:2.2rem;
+.logo{
+    font-size:4rem;
+    animation:pulse 2s infinite;
 }
 
-.ball{
-position:absolute;
-font-size:40px;
-animation:girar 6s linear infinite;
+h1{
+    font-size:3rem;
+    margin-top:10px;
+    color:#ffd60a;
 }
 
-.ball1{
-left:20px;
-top:10px;
+.subtitle{
+    opacity:.8;
 }
 
-.ball2{
-right:20px;
-top:10px;
+@keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.1)}
+    100%{transform:scale(1)}
 }
 
-@keyframes girar{
-100%{
-transform:rotate(360deg);
+.container{
+    width:95%;
+    max-width:1300px;
+    margin:auto;
+    padding-bottom:50px;
 }
-}
-
-/* HERO */
-
-.hero{
-height:70vh;
-background:
-linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),
-url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1500&q=80');
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-justify-content:center;
-flex-direction:column;
-color:white;
-text-align:center;
-}
-
-.hero h2{
-font-size:3rem;
-margin-bottom:15px;
-}
-
-.btn{
-padding:15px 35px;
-border:none;
-background:#ff7a00;
-color:white;
-font-size:18px;
-border-radius:30px;
-cursor:pointer;
-transition:.3s;
-}
-
-.btn:hover{
-transform:scale(1.05);
-background:#ff5000;
-}
-
-/* TELAS */
-
-.screen{
-display:none;
-padding:30px;
-}
-
-.active{
-display:block;
-}
-
-/* CARDAPIO */
 
 .grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+    gap:25px;
 }
 
 .card{
-background:white;
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
-transition:.3s;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:25px;
+    padding:25px;
+    transition:.3s;
+    position:relative;
+    overflow:hidden;
 }
 
 .card:hover{
-transform:translateY(-5px);
+    transform:translateY(-8px);
+    box-shadow:0 0 25px rgba(255,214,10,.4);
 }
 
-.card img{
-width:100%;
-height:200px;
-object-fit:cover;
+.status{
+    position:absolute;
+    top:15px;
+    right:15px;
+    padding:6px 14px;
+    border-radius:50px;
+    font-size:.8rem;
+    font-weight:600;
 }
 
-.card-body{
-padding:15px;
+.future{
+    background:#00b4d8;
 }
 
-.card-body h3{
-margin-bottom:10px;
+.finished{
+    background:#2dc653;
 }
 
-.price{
-font-size:20px;
-color:#ff6a00;
-font-weight:bold;
+.live{
+    background:#ff0000;
+    animation:blink 1s infinite;
 }
 
-/* PRODUTO */
-
-.option-box{
-background:white;
-padding:20px;
-border-radius:15px;
-margin-top:15px;
-box-shadow:0 4px 10px rgba(0,0,0,.08);
+@keyframes blink{
+    50%{opacity:.5}
 }
 
-label{
-display:block;
-margin:10px 0;
+.teams{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:25px;
 }
 
-/* PAGAMENTO */
+.team{
+    text-align:center;
+    width:40%;
+}
 
-.payment{
-background:white;
-padding:20px;
-border-radius:20px;
-box-shadow:0 5px 15px rgba(0,0,0,.08);
+.flag{
+    font-size:3rem;
+}
+
+.name{
+    margin-top:10px;
+    font-weight:600;
+}
+
+.score{
+    font-size:3rem;
+    font-weight:bold;
+    color:#ffd60a;
+}
+
+.date{
+    text-align:center;
+    margin-top:20px;
+    font-size:1.1rem;
+}
+
+.countdown{
+    margin-top:15px;
+    text-align:center;
+    color:#ffd60a;
+    font-weight:600;
 }
 
 footer{
-margin-top:50px;
-background:#ff6a00;
-color:white;
-text-align:center;
-padding:20px;
+    text-align:center;
+    padding:30px;
+    opacity:.7;
 }
-
-.total{
-font-size:28px;
-font-weight:bold;
-color:#ff6a00;
-margin:20px 0;
-}
-
 </style>
 </head>
-
 <body>
 
 <header>
-<div class="ball ball1">⚽</div>
-<div class="ball ball2">⚽</div>
-
-<h1>🇧🇷 Brasil Food 2026</h1>
-<p>Delivery Oficial da Torcida</p>
+    <div class="logo">⚽🏆</div>
+    <h1>COPA 2026</h1>
+    <p class="subtitle">Calendário oficial e resultados em tempo real</p>
 </header>
 
-<!-- HOME -->
-
-<section id="home" class="hero active">
-<h2>Peça sua comida e torça pelo Brasil!</h2>
-<p>Promoções especiais Copa 2026</p>
-<br>
-<button class="btn" onclick="abrirCardapio()">Ver Cardápio</button>
-</section>
-
-<!-- CARDAPIO -->
-
-<section id="cardapio" class="screen">
-
-<h2>🍔 Cardápio</h2>
-
-<div class="grid">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd">
-<div class="card-body">
-<h3>Hambúrguer Copa</h3>
-<p class="price">R$ 25,00</p>
-<br>
-<button class="btn" onclick="selecionarProduto('Hambúrguer Copa',25)">
-Escolher
-</button>
+<div class="container">
+    <div class="grid" id="matches"></div>
 </div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
-<div class="card-body">
-<h3>Marmita Brasileira</h3>
-<p class="price">R$ 35,00</p>
-<br>
-<button class="btn" onclick="selecionarProduto('Marmita Brasileira',35)">
-Escolher
-</button>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
-<div class="card-body">
-<h3>Pizza Torcida</h3>
-<p class="price">R$ 50,00</p>
-<br>
-<button class="btn" onclick="selecionarProduto('Pizza Torcida',50)">
-Escolher
-</button>
-</div>
-</div>
-
-</div>
-</section>
-
-<!-- PRODUTO -->
-
-<section id="produto" class="screen">
-
-<h2 id="nomeProduto"></h2>
-
-<div class="option-box">
-
-<h3>Escolha o sabor *</h3>
-
-<label>
-<input type="radio" name="sabor" value="Frango">
-Frango
-</label>
-
-<label>
-<input type="radio" name="sabor" value="Carne">
-Carne
-</label>
-
-<label>
-<input type="radio" name="sabor" value="Calabresa">
-Calabresa
-</label>
-
-</div>
-
-<div class="option-box">
-
-<h3>Quantidade</h3>
-
-<input
-type="number"
-id="quantidade"
-value="1"
-min="1"
-style="padding:10px;width:100px;"
->
-
-</div>
-
-<br>
-
-<button class="btn" onclick="irPagamento()">
-Continuar
-</button>
-
-</section>
-
-<!-- PAGAMENTO -->
-
-<section id="pagamento" class="screen">
-
-<div class="payment">
-
-<h2>💳 Pagamento</h2>
-
-<div id="resumo"></div>
-
-<div class="total" id="valorTotal"></div>
-
-<label>
-<input type="radio" name="pag" checked>
-Pix
-</label>
-
-<label>
-<input type="radio" name="pag">
-Cartão
-</label>
-
-<label>
-<input type="radio" name="pag">
-Dinheiro
-</label>
-
-<br><br>
-
-<button class="btn" onclick="finalizarPedido()">
-Finalizar Compra
-</button>
-
-</div>
-
-</section>
 
 <footer>
-⚽ Copa 2026 • Brasil Food
+    Atualização automática em tempo real
 </footer>
 
 <script>
 
-let produtoAtual = "";
-let precoAtual = 0;
+// EXEMPLO DE DADOS
+// Substitua pela API oficial
 
-function abrirCardapio(){
+let jogos = [
+{
+    home:"Brasil",
+    away:"Argentina",
+    homeFlag:"🇧🇷",
+    awayFlag:"🇦🇷",
+    date:"2026-06-12T20:00:00",
+    status:"future"
+},
+{
+    home:"França",
+    away:"Alemanha",
+    homeFlag:"🇫🇷",
+    awayFlag:"🇩🇪",
+    date:"2025-05-20T18:00:00",
+    status:"finished",
+    scoreHome:2,
+    scoreAway:1
+}
+];
 
-esconderTudo();
+function renderGames(){
 
-document.getElementById("cardapio")
-.classList.add("active");
+    const container = document.getElementById("matches");
+    container.innerHTML = "";
+
+    jogos.forEach((game,index)=>{
+
+        let statusLabel = "";
+        let statusClass = "";
+
+        if(game.status==="future"){
+            statusLabel="EM BREVE";
+            statusClass="future";
+        }
+
+        if(game.status==="live"){
+            statusLabel="AO VIVO";
+            statusClass="live";
+        }
+
+        if(game.status==="finished"){
+            statusLabel="ENCERRADO";
+            statusClass="finished";
+        }
+
+        let scoreDisplay =
+            game.status==="finished" || game.status==="live"
+            ? `${game.scoreHome ?? 0} x ${game.scoreAway ?? 0}`
+            : "VS";
+
+        container.innerHTML += `
+        <div class="card">
+
+            <div class="status ${statusClass}">
+                ${statusLabel}
+            </div>
+
+            <div class="teams">
+
+                <div class="team">
+                    <div class="flag">${game.homeFlag}</div>
+                    <div class="name">${game.home}</div>
+                </div>
+
+                <div class="score">
+                    ${scoreDisplay}
+                </div>
+
+                <div class="team">
+                    <div class="flag">${game.awayFlag}</div>
+                    <div class="name">${game.away}</div>
+                </div>
+
+            </div>
+
+            <div class="date">
+                ${new Date(game.date).toLocaleString('pt-BR')}
+            </div>
+
+            <div class="countdown" id="countdown-${index}">
+            </div>
+
+        </div>
+        `;
+    });
+
+    updateCountdowns();
 }
 
-function selecionarProduto(nome,preco){
+function updateCountdowns(){
 
-produtoAtual = nome;
-precoAtual = preco;
+    jogos.forEach((game,index)=>{
 
-esconderTudo();
+        const el = document.getElementById(`countdown-${index}`);
+        if(!el) return;
 
-document.getElementById("produto")
-.classList.add("active");
+        if(game.status !== "future"){
+            el.innerHTML = "";
+            return;
+        }
 
-document.getElementById("nomeProduto")
-.innerHTML = nome;
-}
+        const now = new Date();
+        const target = new Date(game.date);
 
-function irPagamento(){
+        const diff = target - now;
 
-let sabor =
-document.querySelector('input[name="sabor"]:checked');
+        if(diff <= 0){
 
-if(!sabor){
+            game.status = "finished";
 
-alert("Escolha um sabor.");
-return;
+            game.scoreHome = 0;
+            game.scoreAway = 0;
 
-}
+            renderGames();
+            return;
+        }
 
-let qtd =
-parseInt(document.getElementById("quantidade").value);
+        const days = Math.floor(diff/(1000*60*60*24));
+        const hours = Math.floor(diff/(1000*60*60)%24);
+        const minutes = Math.floor(diff/(1000*60)%60);
+        const seconds = Math.floor(diff/1000%60);
 
-let total = qtd * precoAtual;
-
-esconderTudo();
-
-document.getElementById("pagamento")
-.classList.add("active");
-
-document.getElementById("resumo").innerHTML = `
-<h3>${produtoAtual}</h3>
-<p>Sabor: ${sabor.value}</p>
-<p>Quantidade: ${qtd}</p>
-`;
-
-document.getElementById("valorTotal").innerHTML =
-"Total: R$ " + total.toFixed(2);
+        el.innerHTML =
+        `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    });
 
 }
 
-function finalizarPedido(){
+setInterval(updateCountdowns,1000);
 
-alert(
-"Pedido realizado com sucesso! 🇧🇷⚽"
-);
+renderGames();
 
-location.reload();
 
-}
+// ====================================
+// EXEMPLO DE CONEXÃO COM API
+// ====================================
 
-function esconderTudo(){
-
-document.querySelectorAll(".screen,.hero")
-.forEach(el=>{
-
-el.classList.remove("active");
-
-});
-
-}
+// async function carregarJogos(){
+//     const response = await fetch(
+//         "https://sua-api.com/worldcup2026",
+//         {
+//             headers:{
+//                 "X-API-Key":"SUA_CHAVE"
+//             }
+//         }
+//     );
+//
+//     const data = await response.json();
+//
+//     jogos = data;
+//     renderGames();
+// }
+//
+// setInterval(carregarJogos,60000);
 
 </script>
 
