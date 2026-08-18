@@ -3,218 +3,2093 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Daniel Tech Blog</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Ícones -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        body{
-            font-family: Arial, Helvetica, sans-serif;
-            background:#f4f4f4;
-            color:#333;
+        html {
+            scroll-behavior: smooth;
         }
 
-        header{
-            background:#183b66;
-            color:white;
-            text-align:center;
-            padding:35px;
+        body {
+            font-family: "Inter", sans-serif;
+            background: #050816;
+            color: white;
+            overflow-x: hidden;
         }
 
-        header h1{
-            font-size:42px;
-            margin-bottom:10px;
+        /* =========================
+           FUNDO
+        ========================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(5, 8, 22, 0.92),
+                    rgba(16, 25, 60, 0.88),
+                    rgba(49, 15, 78, 0.90)
+                ),
+                url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=90");
+
+            background-size: cover;
+            background-position: center;
         }
 
-        nav{
-            background:#0f2743;
-            padding:15px;
-            text-align:center;
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(0, 229, 255, 0.15),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(157, 78, 221, 0.18),
+                    transparent 30%
+                );
         }
 
-        nav a{
-            color:white;
-            text-decoration:none;
-            margin:0 15px;
-            font-weight:bold;
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            min-height: 600px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 80px 20px 120px;
+
+            position: relative;
+            overflow: hidden;
         }
 
-        .container{
-            width:90%;
-            max-width:1100px;
-            margin:30px auto;
-            display:flex;
-            gap:25px;
+        .header-content {
+            max-width: 900px;
+            z-index: 2;
         }
 
-        main{
-            flex:3;
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 10px 18px;
+
+            border: 1px solid rgba(0, 229, 255, 0.4);
+            border-radius: 50px;
+
+            background: rgba(0, 229, 255, 0.08);
+
+            color: #00e5ff;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            margin-bottom: 25px;
+
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.12);
         }
 
-        aside{
-            flex:1;
-            background:white;
-            padding:20px;
-            border-radius:8px;
-            height:fit-content;
+        header h1 {
+            font-family: "Orbitron", sans-serif;
+
+            font-size: clamp(45px, 8vw, 90px);
+
+            line-height: 1;
+
+            margin-bottom: 25px;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #00e5ff,
+                #9d4edd,
+                #ffffff
+            );
+
+            background-size: 300%;
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+
+            animation: gradientMove 6s linear infinite;
         }
 
-        article{
-            background:white;
-            padding:25px;
-            margin-bottom:25px;
-            border-radius:8px;
-            box-shadow:0 2px 5px rgba(0,0,0,.1);
-        }
+        @keyframes gradientMove {
+            0% {
+                background-position: 0%;
+            }
 
-        article h2{
-            color:#183b66;
-            margin-bottom:10px;
-        }
-
-        .autor{
-            color:gray;
-            margin-bottom:15px;
-            font-size:14px;
-        }
-
-        article p{
-            text-align:justify;
-            line-height:1.6;
-        }
-
-        footer{
-            background:#183b66;
-            color:white;
-            text-align:center;
-            padding:20px;
-            margin-top:30px;
-        }
-
-        ul{
-            margin-left:20px;
-            margin-top:10px;
-        }
-
-        @media(max-width:768px){
-            .container{
-                flex-direction:column;
+            100% {
+                background-position: 300%;
             }
         }
 
-    </style>
+        header p {
+            font-size: 20px;
+            color: #d7e4ff;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
 
+        /* =========================
+           BOTÕES
+        ========================= */
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn {
+            border: none;
+            text-decoration: none;
+
+            padding: 15px 25px;
+
+            border-radius: 50px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(
+                135deg,
+                #00e5ff,
+                #0077ff
+            );
+
+            color: white;
+
+            box-shadow:
+                0 0 25px rgba(0, 229, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.08);
+
+            border: 1px solid rgba(255,255,255,0.2);
+
+            color: white;
+
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px) scale(1.03);
+        }
+
+        /* =========================
+           PARTÍCULAS
+        ========================= */
+
+        .particle {
+            position: absolute;
+
+            width: 5px;
+            height: 5px;
+
+            border-radius: 50%;
+
+            background: #00e5ff;
+
+            box-shadow: 0 0 15px #00e5ff;
+
+            animation: float 7s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%,100% {
+                transform: translateY(0);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translateY(-100px);
+                opacity: 1;
+            }
+        }
+
+        .p1 { top: 20%; left: 10%; }
+        .p2 { top: 60%; left: 20%; animation-delay: 1s; }
+        .p3 { top: 30%; right: 15%; animation-delay: 2s; }
+        .p4 { top: 75%; right: 25%; animation-delay: 3s; }
+        .p5 { top: 15%; right: 35%; animation-delay: 4s; }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(5, 8, 22, 0.75);
+
+            backdrop-filter: blur(20px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+
+            padding: 15px 20px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .logo {
+            font-family: "Orbitron", sans-serif;
+
+            color: #00e5ff;
+
+            font-weight: 700;
+
+            font-size: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+        nav a {
+            color: white;
+
+            text-decoration: none;
+
+            padding: 10px 15px;
+
+            border-radius: 10px;
+
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(0,229,255,0.12);
+            color: #00e5ff;
+        }
+
+        .theme-btn {
+            border: none;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.1);
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 17px;
+
+            transition: 0.3s;
+        }
+
+        .theme-btn:hover {
+            transform: rotate(20deg);
+            background: #00e5ff;
+            color: #050816;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-family: "Orbitron", sans-serif;
+
+            font-size: 38px;
+
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: #aebbd6;
+        }
+
+        /* =========================
+           PESQUISA
+        ========================= */
+
+        .search-area {
+            max-width: 700px;
+
+            margin: 0 auto 30px;
+
+            position: relative;
+        }
+
+        .search-area i {
+            position: absolute;
+
+            left: 20px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #00e5ff;
+        }
+
+        #search {
+            width: 100%;
+
+            padding: 17px 20px 17px 50px;
+
+            border-radius: 50px;
+
+            border: 1px solid rgba(255,255,255,0.15);
+
+            background: rgba(255,255,255,0.08);
+
+            backdrop-filter: blur(15px);
+
+            color: white;
+
+            outline: none;
+
+            font-size: 16px;
+        }
+
+        #search::placeholder {
+            color: #8997b3;
+        }
+
+        /* =========================
+           FILTROS
+        ========================= */
+
+        .filters {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-bottom: 40px;
+        }
+
+        .filter {
+            border: 1px solid rgba(255,255,255,0.12);
+
+            background: rgba(255,255,255,0.06);
+
+            color: #dbe6ff;
+
+            padding: 10px 18px;
+
+            border-radius: 50px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .filter:hover,
+        .filter.active {
+            background: #00e5ff;
+
+            color: #04101c;
+
+            border-color: #00e5ff;
+
+            box-shadow: 0 0 20px rgba(0,229,255,0.3);
+        }
+
+        /* =========================
+           POSTS
+        ========================= */
+
+        .posts {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 25px;
+        }
+
+        .post {
+            background: rgba(255,255,255,0.07);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            backdrop-filter: blur(18px);
+
+            transition: 0.4s;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .post::before {
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            background: #00e5ff;
+
+            filter: blur(90px);
+
+            opacity: 0.08;
+
+            top: -70px;
+            right: -70px;
+        }
+
+        .post:hover {
+            transform:
+                translateY(-10px)
+                rotateX(2deg)
+                rotateY(-2deg);
+
+            border-color: rgba(0,229,255,0.45);
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.3),
+                0 0 30px rgba(0,229,255,0.08);
+        }
+
+        .post-icon {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background: linear-gradient(
+                135deg,
+                rgba(0,229,255,0.2),
+                rgba(157,78,221,0.2)
+            );
+
+            color: #00e5ff;
+
+            font-size: 24px;
+
+            margin-bottom: 20px;
+        }
+
+        .post h3 {
+            font-size: 23px;
+
+            margin-bottom: 12px;
+        }
+
+        .post h3 a {
+            color: white;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .post h3 a:hover {
+            color: #00e5ff;
+        }
+
+        .post-date {
+            color: #8997b3;
+
+            font-size: 13px;
+
+            margin-bottom: 18px;
+        }
+
+        .post p {
+            color: #c7d2e8;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+        .post-footer {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            border-top: 1px solid rgba(255,255,255,0.08);
+
+            padding-top: 18px;
+        }
+
+        .post-stats {
+            display: flex;
+
+            gap: 15px;
+
+            color: #8d9bb7;
+
+            font-size: 14px;
+        }
+
+        .like-btn {
+            border: none;
+
+            background: transparent;
+
+            color: #8997b3;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+            transition: 0.3s;
+        }
+
+        .like-btn:hover {
+            color: #ff3b81;
+
+            transform: scale(1.2);
+        }
+
+        .like-btn.liked {
+            color: #ff3b81;
+        }
+
+        /* =========================
+           TECNOLOGIAS
+        ========================= */
+
+        .tech-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(150px, 1fr));
+
+            gap: 18px;
+        }
+
+        .tech {
+            padding: 25px;
+
+            text-align: center;
+
+            background: rgba(255,255,255,0.06);
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            border-radius: 20px;
+
+            transition: 0.3s;
+        }
+
+        .tech i {
+            font-size: 38px;
+
+            color: #00e5ff;
+
+            margin-bottom: 15px;
+        }
+
+        .tech:hover {
+            transform: translateY(-8px);
+
+            background: rgba(0,229,255,0.08);
+
+            border-color: #00e5ff;
+        }
+
+        /* =========================
+           SOBRE
+        ========================= */
+
+        .about {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 40px;
+
+            align-items: center;
+        }
+
+        .about-card {
+            padding: 40px;
+
+            background: rgba(255,255,255,0.07);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            border-radius: 25px;
+
+            backdrop-filter: blur(18px);
+        }
+
+        .about-card h2 {
+            font-family: "Orbitron", sans-serif;
+
+            margin-bottom: 20px;
+        }
+
+        .about-card p {
+            color: #c5d1e7;
+
+            line-height: 1.8;
+        }
+
+        .quote {
+            font-size: 24px;
+
+            color: #00e5ff;
+
+            line-height: 1.5;
+
+            font-weight: 600;
+        }
+
+        /* =========================
+           CONTATO
+        ========================= */
+
+        .contact {
+            max-width: 700px;
+
+            margin: auto;
+
+            padding: 40px;
+
+            background: rgba(255,255,255,0.07);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            border-radius: 25px;
+
+            backdrop-filter: blur(20px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #dce6f8;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            background: rgba(0,0,0,0.2);
+
+            color: white;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            outline: none;
+
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #00e5ff;
+
+            box-shadow:
+                0 0 20px rgba(0,229,255,0.08);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+
+            padding: 50px 20px;
+
+            background: rgba(0,0,0,0.3);
+
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .social {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin: 20px 0;
+        }
+
+        .social a {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            color: white;
+
+            text-decoration: none;
+
+            background: rgba(255,255,255,0.08);
+
+            transition: 0.3s;
+        }
+
+        .social a:hover {
+            background: #00e5ff;
+
+            color: #050816;
+
+            transform: translateY(-5px);
+        }
+
+        /* =========================
+           VOLTAR AO TOPO
+        ========================= */
+
+        #topBtn {
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            width: 50px;
+            height: 50px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #00e5ff;
+
+            color: #04101c;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+            display: none;
+
+            box-shadow:
+                0 0 25px rgba(0,229,255,0.4);
+
+            z-index: 999;
+        }
+
+        /* =========================
+           NOTIFICAÇÃO
+        ========================= */
+
+        #notification {
+            position: fixed;
+
+            right: 25px;
+            top: 90px;
+
+            padding: 15px 22px;
+
+            background: #101a33;
+
+            border: 1px solid #00e5ff;
+
+            border-radius: 12px;
+
+            color: white;
+
+            transform: translateX(150%);
+
+            transition: 0.4s;
+
+            z-index: 2000;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        #notification.show {
+            transform: translateX(0);
+        }
+
+        /* =========================
+           ANIMAÇÃO DE ENTRADA
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+
+            transform: translateY(30px);
+
+            transition: 0.8s;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .nav-container {
+                justify-content: space-between;
+            }
+
+            header {
+                min-height: 550px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .about-card {
+                padding: 25px;
+            }
+
+            .contact {
+                padding: 25px;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            header h1 {
+                font-size: 42px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 60px 15px;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+
+            .post {
+                padding: 24px;
+            }
+
+        }
+
+        /* =========================
+           MODO CLARO
+        ========================= */
+
+        body.light {
+            background: #edf4ff;
+
+            color: #14213d;
+        }
+
+        body.light::before {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(240,248,255,0.88),
+                    rgba(220,235,255,0.9)
+                ),
+                url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=90");
+        }
+
+        body.light nav {
+            background: rgba(255,255,255,0.75);
+        }
+
+        body.light nav a {
+            color: #14213d;
+        }
+
+        body.light .post,
+        body.light .tech,
+        body.light .about-card,
+        body.light .contact {
+            background: rgba(255,255,255,0.65);
+
+            color: #14213d;
+        }
+
+        body.light .post h3 a {
+            color: #14213d;
+        }
+
+        body.light .post p,
+        body.light .about-card p {
+            color: #40516d;
+        }
+
+    </style>
 </head>
+
 <body>
 
-<header>
+    <!-- =========================
+         HEADER
+    ========================= -->
 
-    <h1>Daniel Tech Blog</h1>
+    <header id="inicio">
 
-    <p>Compartilhando conhecimento sobre tecnologia, programação e desenvolvimento web.</p>
+        <span class="particle p1"></span>
+        <span class="particle p2"></span>
+        <span class="particle p3"></span>
+        <span class="particle p4"></span>
+        <span class="particle p5"></span>
 
-</header>
+        <div class="header-content">
 
-<nav>
+            <div class="badge">
+                <i class="fa-solid fa-code"></i>
+                Desenvolvedor em evolução
+            </div>
 
-    <a href="#">Início</a>
-    <a href="#">Posts</a>
-    <a href="#">Sobre</a>
-    <a href="#">Contato</a>
+            <h1>Daniel Tech Blog</h1>
 
-</nav>
+            <p>
+                Tecnologia, programação e desenvolvimento web
+                transformados em experiências incríveis.
+            </p>
 
-<div class="container">
+            <div class="buttons">
 
-<main>
+                <a href="#posts" class="btn btn-primary">
+                    <i class="fa-solid fa-rocket"></i>
+                    Explorar Posts
+                </a>
 
-<article>
+                <a href="#sobre" class="btn btn-secondary">
+                    <i class="fa-solid fa-user"></i>
+                    Sobre Mim
+                </a>
 
-<h2>Meu primeiro post</h2>
+            </div>
 
-<p class="autor">Publicado por Daniel Barbosa | Julho de 2025</p>
+        </div>
 
-<p>
-Seja bem-vindo ao meu blog! Este espaço foi criado para compartilhar meus estudos
-na área da tecnologia. Aqui vou publicar dicas de programação, curiosidades,
-projetos desenvolvidos durante meus cursos e também minha evolução como desenvolvedor.
-Espero que este conteúdo possa ajudar outras pessoas que também estão começando.
-</p>
+    </header>
 
-</article>
 
-<article>
+    <!-- =========================
+         NAVBAR
+    ========================= -->
 
-<h2>Por que aprender HTML e CSS?</h2>
+    <nav>
 
-<p class="autor">Daniel Barbosa</p>
+        <div class="nav-container">
 
-<p>
-HTML e CSS são a base do desenvolvimento web. O HTML é responsável pela estrutura
-das páginas, enquanto o CSS deixa tudo mais bonito e organizado. Antes de aprender
-JavaScript ou frameworks modernos, dominar essas duas tecnologias facilita muito
-o aprendizado e ajuda na criação de sites responsivos e profissionais.
-</p>
+            <div class="logo">
+                &lt;/Daniel&gt;
+            </div>
 
-</article>
+            <ul>
 
-<article>
+                <li>
+                    <a href="#inicio">Início</a>
+                </li>
 
-<h2>Meus objetivos na programação</h2>
+                <li>
+                    <a href="#posts">Posts</a>
+                </li>
 
-<p class="autor">Daniel Barbosa</p>
+                <li>
+                    <a href="#tecnologias">Tecnologias</a>
+                </li>
 
-<p>
-Meu objetivo é evoluir constantemente como desenvolvedor, criando projetos cada vez
-mais completos e aprendendo novas tecnologias. Pretendo estudar JavaScript, bancos
-de dados, Git, GitHub e futuramente frameworks como React, sempre buscando melhorar
-minhas habilidades para atuar profissionalmente na área de tecnologia.
-</p>
+                <li>
+                    <a href="#sobre">Sobre</a>
+                </li>
 
-</article>
+                <li>
+                    <a href="#contato">Contato</a>
+                </li>
 
-</main>
+            </ul>
 
-<aside>
+            <button
+                class="theme-btn"
+                id="themeBtn"
+                title="Alterar tema">
 
-<h2>Sobre mim</h2>
+                <i class="fa-solid fa-moon"></i>
 
-<p>
-Olá! Meu nome é <strong>Daniel Barbosa</strong>. Estou estudando programação e utilizo este blog para registrar meus aprendizados e compartilhar conhecimento.
-</p>
+            </button>
 
-<br>
+        </div>
 
-<h2>Tecnologias</h2>
+    </nav>
 
-<ul>
-<li>HTML</li>
-<li>CSS</li>
-<li>JavaScript (em aprendizado)</li>
-<li>Git e GitHub</li>
-</ul>
 
-<br>
+    <!-- =========================
+         POSTS
+    ========================= -->
 
-<h2>Frase</h2>
+    <main>
 
-<p>
-"Aprender programação é construir soluções para problemas reais."
-</p>
+        <section class="container" id="posts">
 
-</aside>
+            <div class="section-title reveal">
 
-</div>
+                <h2>🚀 Meus Posts</h2>
 
-<footer>
+                <p>
+                    Conteúdos sobre programação, tecnologia e minha jornada.
+                </p>
 
-<p>© 2025 Daniel Tech Blog - Todos os direitos reservados.</p>
+            </div>
 
-</footer>
+
+            <!-- PESQUISA -->
+
+            <div class="search-area reveal">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Pesquisar um post..."
+                >
+
+            </div>
+
+
+            <!-- FILTROS -->
+
+            <div class="filters reveal">
+
+                <button
+                    class="filter active"
+                    data-category="all">
+
+                    Todos
+
+                </button>
+
+                <button
+                    class="filter"
+                    data-category="html">
+
+                    HTML
+
+                </button>
+
+                <button
+                    class="filter"
+                    data-category="css">
+
+                    CSS
+
+                </button>
+
+                <button
+                    class="filter"
+                    data-category="javascript">
+
+                    JavaScript
+
+                </button>
+
+                <button
+                    class="filter"
+                    data-category="git">
+
+                    Git
+
+                </button>
+
+            </div>
+
+
+            <!-- POSTS -->
+
+            <div class="posts">
+
+
+                <!-- POST 1 -->
+
+                <article
+                    class="post reveal"
+                    data-category="html"
+                    data-title="meu primeiro post">
+
+                    <div class="post-icon">
+
+                        <i class="fa-solid fa-code"></i>
+
+                    </div>
+
+                    <h3>
+                        <a href="#">
+                            Meu primeiro post
+                        </a>
+                    </h3>
+
+                    <div class="post-date">
+
+                        Publicado por Daniel Barbosa
+                        • Julho de 2025
+
+                    </div>
+
+                    <p>
+                        Seja bem-vindo ao meu blog! Este espaço foi
+                        criado para compartilhar meus estudos na área
+                        da tecnologia e registrar minha evolução como
+                        desenvolvedor.
+                    </p>
+
+                    <div class="post-footer">
+
+                        <div class="post-stats">
+
+                            <span>
+                                <i class="fa-solid fa-eye"></i>
+                                128
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-comment"></i>
+                                8
+                            </span>
+
+                        </div>
+
+                        <button class="like-btn">
+
+                            <i class="fa-regular fa-heart"></i>
+
+                            <span>24</span>
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- POST 2 -->
+
+                <article
+                    class="post reveal"
+                    data-category="css"
+                    data-title="por que aprender html e css">
+
+                    <div class="post-icon">
+
+                        <i class="fa-brands fa-html5"></i>
+
+                    </div>
+
+                    <h3>
+                        <a href="#">
+                            Por que aprender HTML e CSS?
+                        </a>
+                    </h3>
+
+                    <div class="post-date">
+
+                        Daniel Barbosa
+
+                    </div>
+
+                    <p>
+                        HTML e CSS são a base do desenvolvimento web.
+                        O HTML organiza o conteúdo enquanto o CSS
+                        transforma páginas simples em experiências
+                        visualmente incríveis.
+                    </p>
+
+                    <div class="post-footer">
+
+                        <div class="post-stats">
+
+                            <span>
+                                <i class="fa-solid fa-eye"></i>
+                                156
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-comment"></i>
+                                12
+                            </span>
+
+                        </div>
+
+                        <button class="like-btn">
+
+                            <i class="fa-regular fa-heart"></i>
+
+                            <span>31</span>
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- POST 3 -->
+
+                <article
+                    class="post reveal"
+                    data-category="javascript"
+                    data-title="começando com javascript">
+
+                    <div class="post-icon">
+
+                        <i class="fa-brands fa-js"></i>
+
+                    </div>
+
+                    <h3>
+                        <a href="#">
+                            Começando com JavaScript
+                        </a>
+                    </h3>
+
+                    <div class="post-date">
+
+                        Daniel Barbosa
+
+                    </div>
+
+                    <p>
+                        JavaScript permite adicionar comportamento,
+                        interatividade e inteligência às páginas web.
+                        Estou começando meus estudos e compartilhando
+                        cada descoberta.
+                    </p>
+
+                    <div class="post-footer">
+
+                        <div class="post-stats">
+
+                            <span>
+                                <i class="fa-solid fa-eye"></i>
+                                203
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-comment"></i>
+                                15
+                            </span>
+
+                        </div>
+
+                        <button class="like-btn">
+
+                            <i class="fa-regular fa-heart"></i>
+
+                            <span>42</span>
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <!-- POST 4 -->
+
+                <article
+                    class="post reveal"
+                    data-category="git"
+                    data-title="aprendendo git e github">
+
+                    <div class="post-icon">
+
+                        <i class="fa-brands fa-github"></i>
+
+                    </div>
+
+                    <h3>
+                        <a href="#">
+                            Aprendendo Git e GitHub
+                        </a>
+                    </h3>
+
+                    <div class="post-date">
+
+                        Daniel Barbosa
+
+                    </div>
+
+                    <p>
+                        Git e GitHub são ferramentas essenciais para
+                        organizar projetos, acompanhar alterações e
+                        trabalhar com código de forma profissional.
+                    </p>
+
+                    <div class="post-footer">
+
+                        <div class="post-stats">
+
+                            <span>
+                                <i class="fa-solid fa-eye"></i>
+                                178
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-comment"></i>
+                                9
+                            </span>
+
+                        </div>
+
+                        <button class="like-btn">
+
+                            <i class="fa-regular fa-heart"></i>
+
+                            <span>28</span>
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TECNOLOGIAS
+        ========================= -->
+
+        <section
+            class="container"
+            id="tecnologias">
+
+            <div class="section-title reveal">
+
+                <h2>⚡ Tecnologias</h2>
+
+                <p>
+                    Ferramentas que estou estudando e utilizando.
+                </p>
+
+            </div>
+
+            <div class="tech-grid">
+
+
+                <div class="tech reveal">
+
+                    <i class="fa-brands fa-html5"></i>
+
+                    <h3>HTML5</h3>
+
+                </div>
+
+
+                <div class="tech reveal">
+
+                    <i class="fa-brands fa-css3-alt"></i>
+
+                    <h3>CSS3</h3>
+
+                </div>
+
+
+                <div class="tech reveal">
+
+                    <i class="fa-brands fa-js"></i>
+
+                    <h3>JavaScript</h3>
+
+                </div>
+
+
+                <div class="tech reveal">
+
+                    <i class="fa-brands fa-git-alt"></i>
+
+                    <h3>Git</h3>
+
+                </div>
+
+
+                <div class="tech reveal">
+
+                    <i class="fa-brands fa-github"></i>
+
+                    <h3>GitHub</h3>
+
+                </div>
+
+
+                <div class="tech reveal">
+
+                    <i class="fa-solid fa-database"></i>
+
+                    <h3>Banco de Dados</h3>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SOBRE
+        ========================= -->
+
+        <section
+            class="container"
+            id="sobre">
+
+            <div class="about">
+
+
+                <div class="about-card reveal">
+
+                    <h2>
+                        👨‍💻 Sobre Mim
+                    </h2>
+
+                    <p>
+                        Olá! Meu nome é Daniel Barbosa.
+                        Estou estudando programação e utilizo
+                        este blog para registrar meus aprendizados,
+                        projetos e evolução como desenvolvedor.
+                    </p>
+
+                    <br>
+
+                    <p>
+                        Meu objetivo é aprender cada vez mais,
+                        criar projetos interessantes e transformar
+                        ideias em soluções reais.
+                    </p>
+
+                </div>
+
+
+                <div class="about-card reveal">
+
+                    <p class="quote">
+
+                        "Aprender programação é construir
+                        soluções para problemas reais."
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTATO
+        ========================= -->
+
+        <section
+            class="container"
+            id="contato">
+
+            <div class="section-title reveal">
+
+                <h2>📩 Entre em Contato</h2>
+
+                <p>
+                    Quer conversar sobre tecnologia?
+                    Envie uma mensagem.
+                </p>
+
+            </div>
+
+
+            <form
+                class="contact reveal"
+                id="contactForm">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Seu nome
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Digite seu nome"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Seu e-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="seuemail@email.com"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Mensagem
+                    </label>
+
+                    <textarea
+                        id="message"
+                        placeholder="Escreva sua mensagem..."
+                        required></textarea>
+
+                </div>
+
+
+                <button
+                    class="btn btn-primary"
+                    type="submit">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Enviar mensagem
+
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <h3>
+            Daniel Tech Blog
+        </h3>
+
+        <div class="social">
+
+            <a
+                href="#"
+                title="GitHub">
+
+                <i class="fa-brands fa-github"></i>
+
+            </a>
+
+            <a
+                href="#"
+                title="Instagram">
+
+                <i class="fa-brands fa-instagram"></i>
+
+            </a>
+
+            <a
+                href="#"
+                title="LinkedIn">
+
+                <i class="fa-brands fa-linkedin"></i>
+
+            </a>
+
+        </div>
+
+        <p>
+            © 2026 Daniel Barbosa • Feito com 💙 e código.
+        </p>
+
+    </footer>
+
+
+    <!-- BOTÃO TOPO -->
+
+    <button id="topBtn">
+
+        <i class="fa-solid fa-arrow-up"></i>
+
+    </button>
+
+
+    <!-- NOTIFICAÇÃO -->
+
+    <div id="notification">
+        Mensagem enviada com sucesso! 🚀
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* =========================
+           MODO ESCURO / CLARO
+        ========================= */
+
+        const themeBtn =
+            document.getElementById("themeBtn");
+
+        themeBtn.addEventListener("click", () => {
+
+            document.body.classList.toggle("light");
+
+            const icon =
+                themeBtn.querySelector("i");
+
+            if (document.body.classList.contains("light")) {
+
+                icon.classList.remove("fa-moon");
+
+                icon.classList.add("fa-sun");
+
+            } else {
+
+                icon.classList.remove("fa-sun");
+
+                icon.classList.add("fa-moon");
+
+            }
+
+        });
+
+
+        /* =========================
+           CURTIDAS
+        ========================= */
+
+        const likeButtons =
+            document.querySelectorAll(".like-btn");
+
+        likeButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const icon =
+                    button.querySelector("i");
+
+                const counter =
+                    button.querySelector("span");
+
+                let likes =
+                    parseInt(counter.textContent);
+
+                if (!button.classList.contains("liked")) {
+
+                    likes++;
+
+                    button.classList.add("liked");
+
+                    icon.classList.remove(
+                        "fa-regular"
+                    );
+
+                    icon.classList.add(
+                        "fa-solid"
+                    );
+
+                    showNotification(
+                        "Você curtiu este post ❤️"
+                    );
+
+                } else {
+
+                    likes--;
+
+                    button.classList.remove("liked");
+
+                    icon.classList.remove(
+                        "fa-solid"
+                    );
+
+                    icon.classList.add(
+                        "fa-regular"
+                    );
+
+                }
+
+                counter.textContent = likes;
+
+            });
+
+        });
+
+
+        /* =========================
+           PESQUISA
+        ========================= */
+
+        const search =
+            document.getElementById("search");
+
+        const posts =
+            document.querySelectorAll(".post");
+
+        search.addEventListener("input", () => {
+
+            const text =
+                search.value.toLowerCase();
+
+            posts.forEach(post => {
+
+                const title =
+                    post.dataset.title;
+
+                if (title.includes(text)) {
+
+                    post.style.display = "";
+
+                } else {
+
+                    post.style.display = "none";
+
+                }
+
+            });
+
+        });
+
+
+        /* =========================
+           FILTROS
+        ========================= */
+
+        const filters =
+            document.querySelectorAll(".filter");
+
+        filters.forEach(filter => {
+
+            filter.addEventListener("click", () => {
+
+                filters.forEach(item => {
+
+                    item.classList.remove("active");
+
+                });
+
+                filter.classList.add("active");
+
+                const category =
+                    filter.dataset.category;
+
+                posts.forEach(post => {
+
+                    if (
+                        category === "all" ||
+                        post.dataset.category === category
+                    ) {
+
+                        post.style.display = "";
+
+                    } else {
+
+                        post.style.display = "none";
+
+                    }
+
+                });
+
+            });
+
+        });
+
+
+        /* =========================
+           FORMULÁRIO
+        ========================= */
+
+        const contactForm =
+            document.getElementById("contactForm");
+
+        contactForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+                showNotification(
+                    "Mensagem enviada! Obrigado pelo contato 🚀"
+                );
+
+                contactForm.reset();
+
+            }
+        );
+
+
+        /* =========================
+           NOTIFICAÇÃO
+        ========================= */
+
+        function showNotification(message) {
+
+            const notification =
+                document.getElementById("notification");
+
+            notification.textContent = message;
+
+            notification.classList.add("show");
+
+            setTimeout(() => {
+
+                notification.classList.remove("show");
+
+            }, 3000);
+
+        }
+
+
+        /* =========================
+           BOTÃO VOLTAR AO TOPO
+        ========================= */
+
+        const topBtn =
+            document.getElementById("topBtn");
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 500) {
+
+                topBtn.style.display = "block";
+
+            } else {
+
+                topBtn.style.display = "none";
+
+            }
+
+        });
+
+        topBtn.addEventListener("click", () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+
+        /* =========================
+           ANIMAÇÃO AO ROLAR
+        ========================= */
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        document
+            .querySelectorAll(".reveal")
+            .forEach(element => {
+
+                observer.observe(element);
+
+            });
+
+
+        /* =========================
+           EFEITO 3D NOS CARDS
+        ========================= */
+
+        document
+            .querySelectorAll(".post")
+            .forEach(card => {
+
+                card.addEventListener(
+                    "mousemove",
+                    event => {
+
+                        const rect =
+                            card.getBoundingClientRect();
+
+                        const x =
+                            event.clientX - rect.left;
+
+                        const y =
+                            event.clientY - rect.top;
+
+                        const centerX =
+                            rect.width / 2;
+
+                        const centerY =
+                            rect.height / 2;
+
+                        const rotateX =
+                            ((y - centerY) / centerY) * -3;
+
+                        const rotateY =
+                            ((x - centerX) / centerX) * 3;
+
+                        card.style.transform =
+                            `perspective(800px)
+                             rotateX(${rotateX}deg)
+                             rotateY(${rotateY}deg)
+                             translateY(-8px)`;
+
+                    }
+                );
+
+
+                card.addEventListener(
+                    "mouseleave",
+                    () => {
+
+                        card.style.transform = "";
+
+                    }
+                );
+
+            });
+
+    </script>
 
 </body>
 </html>
